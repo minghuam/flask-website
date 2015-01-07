@@ -1,0 +1,103 @@
+body {
+  color: #333;
+  font-family: 'Clear Sans';
+  /*margin: 0;*/
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 40em;
+  padding: 1em 10%;
+  /*border: 1px solid red;*/
+  /*font-weight: 100;*/
+}
+
+a {
+  color: #c00000; /* #ee3e64; /* #cb4b16 */
+  text-decoration: none;
+}
+
+a:hover {
+  color: inherit;
+}
+
+.op_link{
+  font-size: .85em;
+  font-weight: 100;
+} 
+
+img {
+  max-width: 100%
+}
+
+th {
+  font-weight: 100;
+}
+
+figure {
+  margin: 0;
+}
+
+table caption,
+figure figcaption {
+  font-weight: 100;
+}
+
+ul, ol {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 1em;
+}
+
+ul, ol {
+  padding: 0;
+}
+
+.byline {
+  font-style: italic;
+}
+
+body h1, h2, h3, h4, h5, h6{
+  font-weight: 100;
+  margin-bottom: 0;
+}
+
+#blog_date{
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+}
+
+#header > h1{
+  font-weight: 300;
+  margin-bottom: 0.5em;
+}
+
+#header{
+  margin: 0;
+  padding: 0;
+  /*border: 1px solid green;*/
+}
+
+#navigation{
+  /*margin: 2em, 0;
+  /*padding: 0;*/
+  padding-bottom: 0.5em;
+  /*border-bottom: 1px solid #ececec;*/
+}
+
+#content{
+  /*border: 1px solid red;*/
+}
+
+#footer {
+  /*border-top: 1px solid #ececec;*/
+  font-size: .85em;
+  font-weight: 100;
+  margin: 2em 0;
+  /*border: 1px solid yellow;*/
+}
+
+.edit_input{
+  rows: 10;
+}

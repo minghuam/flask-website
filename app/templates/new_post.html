@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="" method="post" name="new_post">
+{{ form.hidden_tag() }}
+<p>{{ form.title.label }}<br>{{ form.title() }}<br></p>
+<p>{{ form.body.label }}<br>{{ form.body(rows = 10, cols = 60) }}<br></p>
+
+{% for message in get_flashed_messages() %}
+<div class = "error_msg">
+	{{ message }}
+</div>
+{% endfor %}
+
+<p>{{ form.submit() }}</p>
+<!--
+<p>{{ form.preview() }}</p>
+-->
+
+</form>
+
+{% endblock %}

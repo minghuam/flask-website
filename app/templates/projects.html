@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Project List</h2>
+
+{% if current_user.is_authenticated() %}
+<a class="op_link" href="/new_project">new project</a>
+{% endif %}
+
+<ol>
+{% for entry in entries %}
+	<li>
+		<em>{{ entry.timestamp.date().isoformat() }}</em>
+		{% if current_user.is_authenticated() %}
+		<a class="op_link" href= "/projects/edit/{{ entry.id }} ">| edit</a>
+		<a class="op_link" href= "/projects/delete/{{ entry.id }} ">| delete</a>
+		{% endif %}
+		<br>
+		<a href= "/projects/{{ entry.id }}">{{ entry.title }}</a>
+	</li>
+{% endfor %}
+</ol>
+
+{% endblock %}

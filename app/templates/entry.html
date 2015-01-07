@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+{{ entry.title }}
+{% endblock%}
+
+{% block content %}
+
+<h2>{{ entry.title }}</h2>
+
+<p><em>{{ entry.timestamp.date().isoformat() }}</em></p>
+
+<div>
+{{ entry.body_html | safe }}
+</div>
+
+{% endblock %}

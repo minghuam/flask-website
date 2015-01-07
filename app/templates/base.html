@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>{% block page_title %}Minghuang Ma{% endblock %}</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename = 'css/font_n_code.css') }}"/>
+		<link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}"/>
+	</head>
+
+	<body>
+		<div id="header">
+			<h1><a href="/">Minghuang Ma</a></h1>
+		</div>
+
+		<div id="navigation">
+			/<a href="/projects">projects</a>
+			/<a href="/blog">blog</a>
+			/<a href="/about">about</a>
+		</div>
+
+		<div id="content">
+			{% block content %}{% endblock %}
+		</div>
+
+		<div id="footer">
+			<p>
+				{% if current_user.is_authenticated() %}
+				<a href="/logout">logout</a>
+				{% else %}
+				<a href="/login">login</a>
+				{% endif %}
+				| made with <a href="http://flask.pocoo.org/">python</a> and <a href="http://flask.pocoo.org/">flask</a>.
+			</p>
+		</div>
+	</body>
+
+</html>

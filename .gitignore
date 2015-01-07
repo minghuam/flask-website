@@ -1,0 +1,13 @@
+# mac
+.DS_Store
+
+# python
+*.pyc
+
+# sqlite
+*.sqlite
+
+# app
+log/*
+tmp/*
+env/*
