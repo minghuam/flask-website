@@ -7,7 +7,3 @@
 # sqlite
 *.sqlite
 
-# app
-log/*
-tmp/*
-env/*

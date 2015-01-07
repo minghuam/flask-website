@@ -1,30 +1,46 @@
-##Create app directories.
+###Create app directories.
 ```
 sudo mkdir /var/www
 sudo mkdir /var/www/blog
 sudo chown -R ubuntu:ubuntu /var/www/blog
 ```
-##Create python virtual environment.
+Clone the project and copy all files into */var/www/blog*.
+
+###Create python virtual environment.
 ```
 cd /var/www/blog
 virtualenv env
-. env/bin/activate
 ```
-##Install tools and requirements.
+###Install tools and requirements.
 ```
 sudo apt-get install ngninx
-sudo pip install uwgsi
+sudo pip install uwsgi
+. env/bin/activate
 pip install -r requirements.txt
 ```
-Check *uwgsi* version
+Check *uwsgi* version.
 ```
-which uwgsi
-uwgsi --version
+which uwsgi
+uwsgi --version
 ```
 
-Note: On Ubuntu 12.04, `sudo apt-get install uwgsi` will install *uwgsi* 1.03, which does not work. Use `pip install uwgsi` instead.
+Note: On Ubuntu 12.04, `sudo apt-get install uwsgi` will install *uwsgi* 1.03, which does not work. Use `pip install uwsgi` instead.
 
-##*nginx* configuration
+### Create database and private data.
+Generate *SECRET_KEY* and modify *config.py*. An easy way to do is using
+```
+os.urandom(24)
+```
+Make sure the admin password is in the environment variable *ADMIN_PASSWORD*. In virtual environment, create a sqlite database and insert roles and at least one *admin* user.
+```
+. env/bin/activate
+python manage.py shell
+db.create_all()
+Role.insert_roles()
+User.insert_admin()
+```
+
+###*nginx* configuration
 Create *nginx* configuration file: *blog_nginx.conf*.
 ```
 server{
@@ -46,7 +62,7 @@ Symlink *nginx*'s configuration file.
 ```
 sudo ln -s /var/www/blog/blog_nginx.conf /etc/nginx/conf.d/
 ```
-##*uwsgi* configuration.
+###*uwsgi* configuration.
 Create *uwsgi* configuration file: *blog_uwsgi.ini*.
 ```
 # work with uwsgi 2.0+
@@ -73,14 +89,14 @@ Create *uwsgi* upstart file: /etc/init/blog_uwsgi.conf
 # /etc/init/blog_uwsgi.conf
 # respawn
 
-description "uWSGI Emperor"
+description "Blog uWSGI Emperor"
 start on runlevel [2345]
 stop on runlevel [06]
 
 exec uwsgi --master --die-on-term --emperor --ini /var/www/blog/blog_uwsgi.ini
 ```
 
-## Start web server and *WSGI* app.
+### Start web server and *WSGI* app.
 Start *uwsgi*.
 ```
 sudo start blog_uwsgi
